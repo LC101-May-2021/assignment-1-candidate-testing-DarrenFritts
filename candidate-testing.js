@@ -8,7 +8,12 @@ let candidateName ="";
 let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer ="";
-let questions = ["Who was the first American woman in space? ", "True or false: 5 kilometer == 5000 meters? ", "(5 + 3)/2 * 10 = ? ", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "What is the minimum crew size for the ISS? "];
+let questions = [
+ "Who was the first American woman in space? ",
+ "True or false: 5 kilometer == 5000 meters? ", 
+ "(5 + 3)/2 * 10 = ? ", 
+ "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", 
+ "What is the minimum crew size for the ISS? "];
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
 let numberOfQuizQuestions = questions.length;
@@ -28,6 +33,7 @@ function askQuestion() {
 }
 
 function gradeQuiz(candidateAnswers) {
+  let grade = 0;
 
   console.log(`Candidate Name: ${candidateName}`);
   for (let i = 0; i < questions.length; i++) {
@@ -36,26 +42,24 @@ function gradeQuiz(candidateAnswers) {
 
   for (let i = 0; i < questions.length; i++) {
     if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
-    numberOfCorrectQuestions += 1;
+    grade += 1;
     }
   }
     
-  let grade = (numberOfCorrectQuestions / numberOfQuizQuestions) * 100;
-
-
-  
-  return grade;
+  // grade = (numberOfCorrectQuestions / numberOfQuizQuestions) * 100;  
+  return grade / questions.length *100;
 } 
 
 function runProgram() {
   askForName();
   // TODO 1.1c: Ask for candidate's name //
-  console.log(`\nGreetings, ${candidateName}.\n`);
+  // console.log(`\nGreetings, ${candidateName}.\n`);
   
   askQuestion();
+  console.log("\n");
   let grade = gradeQuiz(this.candidateAnswers);
-  
-  console.log(`>>> Overall Grade: ${grade}% (${numberOfCorrectQuestions} of ${questions.length} responses correct) <<<`);
+   
+  console.log(`>>> Overall Grade: ${grade}% (${grade /100 *questions.length} of ${questions.length} responses correct) <<<`);
 
   if (grade >= 80) {
     console.log(">>> Status: PASSED <<<");
