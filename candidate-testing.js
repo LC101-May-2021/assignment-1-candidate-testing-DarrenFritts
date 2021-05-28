@@ -29,7 +29,7 @@ function askQuestion() {
 
 function gradeQuiz(candidateAnswers) {
 
-  console.log(`\n\nCandidate Name: ${candidateName}`);
+  console.log(`Candidate Name: ${candidateName}`);
   for (let i = 0; i < questions.length; i++) {
     console.log(`${i+1}) ${questions[i]}\nYour Answer: ${candidateAnswers[i]}\nCorrect Answer: ${correctAnswers[i]}\n`);    
   }
@@ -42,16 +42,10 @@ function gradeQuiz(candidateAnswers) {
     
   let grade = (numberOfCorrectQuestions / numberOfQuizQuestions) * 100;
 
-  console.log(`>>> Overall Grade: ${grade}% (${numberOfCorrectQuestions} of ${questions.length} responses correct) <<<`);
 
-  if (grade >= 80) {
-    console.log(">>> Status: PASSED <<<");
-  } else {
-    console.log(">>> Status: FAILED <<<");
-  }  
-
+  
   return grade;
-}
+} 
 
 function runProgram() {
   askForName();
@@ -59,7 +53,15 @@ function runProgram() {
   console.log(`\nGreetings, ${candidateName}.\n`);
   
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  let grade = gradeQuiz(this.candidateAnswers);
+  
+  console.log(`>>> Overall Grade: ${grade}% (${numberOfCorrectQuestions} of ${questions.length} responses correct) <<<`);
+
+  if (grade >= 80) {
+    console.log(">>> Status: PASSED <<<");
+  } else {
+    console.log(">>> Status: FAILED <<<");
+  } 
 }
 
 // Don't write any code below this line //
